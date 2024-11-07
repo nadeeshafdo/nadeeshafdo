@@ -32,9 +32,3 @@ I'm an undergraduate student from Sri Lanka with proficiency in HTML5, CSS3, Jav
 <p align="center">
   <img src='https://github-readme-activity-graph.vercel.app/graph?username=nadeeshafdo&bg_color=1a1b27&color=37bcf6&line=0e75b6&point=ffffff&area=true&hide_border=true' alt='Contribution Graph'>
 </p>
-
-## 📚 GitHub All Stats
-
-<p align="center">
-  <img src='https://myreadme.vercel.app/api/embed/nadeeshafdo?panels=userstatistics,toprepositories,toplanguages,commitgraph' alt='nadeeshafdo'>
-</p>
