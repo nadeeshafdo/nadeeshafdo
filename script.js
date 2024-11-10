@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const CONFIG = {
         githubUsername: 'nadeeshafdo',
-        typewriterSpeed: 50,
-        loadingDuration: 3000,
-        adviceDisplayDuration: 2000
+        typewriterSpeed: 75,
+        loadingDuration: 8000,
+        adviceDisplayDuration: 4000
     };
 
     // Typewriter effect implementation
