@@ -225,7 +225,7 @@ body {
     border-right: 2px solid var(--primary);
     white-space: nowrap;
     overflow: hidden;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation: typing 3.5s steps(40, end), blink-caret 1.25s step-end infinite;
 }
 
 @keyframes typing {
@@ -376,7 +376,7 @@ footer {
 #typewriter::after {
     content: "|";
     display: inline-block;
-    animation: blink 0.7s steps(1) infinite;
+    animation: blink 1.25s steps(1) infinite;
 }
 
 @keyframes blink {

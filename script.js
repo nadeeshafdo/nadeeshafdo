@@ -1,86 +1,237 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const projectsSection = document.querySelector('#projects');
+    // DOM Elements
+    const projectsSection = document.querySelector('.projects-grid');
     const loadingScreen = document.getElementById('loading-screen');
-    const loadingText = document.getElementById('loading-text');
-    const githubUsername = 'nadeeshafdo';
+    const typewriterElement = document.getElementById('typewriter');
+    const statValues = document.querySelectorAll('.stat-value');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    const CONFIG = {
+        githubUsername: 'nadeeshafdo',
+        typewriterSpeed: 50,
+        loadingDuration: 3000,
+        adviceDisplayDuration: 2000
+    };
 
-    // Typewriter effect variables
-    let adviceText = '';
-    let charIndex = 0;
+    // Typewriter effect implementation
+    class Typewriter {
+        constructor(element, text, speed = 50) {
+            this.element = element;
+            this.text = text;
+            this.speed = speed;
+            this.currentChar = 0;
+            this.isDeleting = false;
+        }
 
-    // Typewriter function to display one character at a time
-    function typeWriter() {
-        if (charIndex < adviceText.length) {
-            loadingText.textContent += adviceText.charAt(charIndex); // Add one character
-            charIndex++;
-            setTimeout(typeWriter, 100); // Adjust speed here (100ms per character)
+        type() {
+            // Current text based on deletion or typing
+            const fullText = this.text;
+            const currentText = fullText.substring(0, this.currentChar);
+
+            // Update the element text
+            this.element.textContent = currentText;
+
+            // Add blinking cursor
+            if (!this.isDeleting && this.currentChar === fullText.length) {
+                return;
+            }
+
+            // Speed for typing and deleting
+            let typeSpeed = this.speed;
+
+            if (!this.isDeleting) {
+                this.currentChar++;
+            }
+
+            // Continue typing
+            setTimeout(() => this.type(), typeSpeed);
+        }
+
+        start() {
+            this.type();
         }
     }
 
-    // Fetch advice message and apply typewriter effect
-    fetch('https://api.adviceslip.com/advice')
-        .then(response => response.json())
-        .then(data => {
-            adviceText = data.slip.advice; // Set advice text
-            typeWriter(); // Start the typewriter effect
-        })
-        .catch(error => {
-            console.error('Error fetching advice:', error);
-            adviceText = 'Loading projects, please wait...';
-            typeWriter();
-        });
+    // Animate number counter
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 50; // Divide animation into 50 steps
+        const duration = 2000; // 2 seconds
+        const stepTime = duration / 50;
 
-    // Fetch projects from GitHub API
-    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=created&per_page=10`)
-        .then(response => {
+        const counter = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = Math.round(target);
+                clearInterval(counter);
+            } else {
+                element.textContent = Math.round(current);
+            }
+        }, stepTime);
+    }
+
+    // Initialize stat counters
+    function initializeCounters() {
+        statValues.forEach(stat => {
+            const targetValue = parseInt(stat.dataset.count);
+            animateCounter(stat, targetValue);
+        });
+    }
+
+    // Create project card
+    function createProjectCard(repo) {
+        const card = document.createElement('article');
+        card.className = 'project-card';
+
+        const technologies = repo.topics || [];
+        const languageClass = repo.language ? repo.language.toLowerCase() : '';
+
+        card.innerHTML = `
+            <div class="project-header">
+                <i class="fas fa-folder-open project-icon"></i>
+                <div class="project-links">
+                    ${repo.homepage ? `
+                        <a href="${repo.homepage}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    ` : ''}
+                    <a href="${repo.html_url}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View source">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <h3 class="project-title">${repo.name}</h3>
+            <p class="project-description">${repo.description || 'No description available'}</p>
+            <div class="project-tech">
+                ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+            ${repo.language ? `
+                <div class="project-language">
+                    <span class="language-dot ${languageClass}"></span>
+                    <span>${repo.language}</span>
+                </div>
+            ` : ''}
+        `;
+
+        return card;
+    }
+
+    // Fetch and display GitHub projects
+    async function fetchProjects() {
+        try {
+            const response = await fetch(
+                `https://api.github.com/users/${CONFIG.githubUsername}/repos?sort=created&per_page=6`,
+                {
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Accept-Encoding': 'gzip, deflate'
+                    }
+                }
+            );
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
-        })
-        .then(repos => {
-            // Hide the loading screen after fetching the data and displaying advice
-            setTimeout(() => {
-                loadingScreen.classList.add('hidden'); // Transition out the loading screen
-            }, 8000); // Show the advice for 8 seconds
 
-            // Clear any existing projects content
-            projectsSection.innerHTML = '';
-
+            const repos = await response.json();
+            
             if (repos.length === 0) {
-                projectsSection.innerHTML = '<p>No projects found.</p>';
+                projectsSection.innerHTML = '<p class="no-projects">No projects found.</p>';
+                return;
             }
 
+            // Clear and populate projects
+            projectsSection.innerHTML = '';
             repos.forEach(repo => {
-                const projectCard = document.createElement('div');
-                projectCard.classList.add('project-card');
-
-                const projectTitle = document.createElement('h3');
-                projectTitle.textContent = repo.name;
-
-                const projectDescription = document.createElement('p');
-                projectDescription.textContent = repo.description || 'No description available';
-
-                const projectLink = document.createElement('a');
-                projectLink.href = repo.html_url;
-                projectLink.textContent = 'View Project';
-                projectLink.target = '_blank';
-                projectLink.style.display = 'block';
-                projectLink.style.color = 'var(--primary)';
-                projectLink.style.marginTop = '10px';
-
-                // Append title, description, and link to project card
-                projectCard.appendChild(projectTitle);
-                projectCard.appendChild(projectDescription);
-                projectCard.appendChild(projectLink);
-
-                // Append project card to the projects section
+                const projectCard = createProjectCard(repo);
                 projectsSection.appendChild(projectCard);
             });
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error fetching GitHub repos:', error);
-            loadingScreen.style.display = 'none';
-            projectsSection.innerHTML = `<p>Unable to load projects at this time. Please try again later.</p>`;
+            projectsSection.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Unable to load projects at this time. Please try again later.</p>
+                </div>
+            `;
+        }
+    }
+
+    // Initialize loading sequence
+    async function initializeLoadingSequence() {
+        try {
+            // Fetch advice while loading
+            const adviceResponse = await fetch('https://api.adviceslip.com/advice');
+            const adviceData = await adviceResponse.json();
+            const advice = adviceData.slip.advice;
+
+            // Start typewriter effect
+            const typewriter = new Typewriter(typewriterElement, advice, CONFIG.typewriterSpeed);
+            typewriter.start();
+
+            // Initialize projects fetch
+            await fetchProjects();
+
+            // Hide loading screen after everything is loaded
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                initializeCounters();
+            }, CONFIG.loadingDuration + CONFIG.adviceDisplayDuration);
+
+        } catch (error) {
+            console.error('Error during loading sequence:', error);
+            typewriterElement.textContent = 'Loading your experience...';
+            
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                initializeCounters();
+            }, CONFIG.loadingDuration);
+        }
+    }
+
+    // Mobile menu toggle
+    function initializeMobileMenu() {
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
+
+        // Close mobile menu when clicking a link
+        navLinks?.addEventListener('click', (e) => {
+            if (e.target.classList.contains('nav-link')) {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+
+    // Scroll reveal animation
+    function initializeScrollReveal() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .about-content, .contact-content')
+            .forEach(element => observer.observe(element));
+    }
+
+    // Initialize everything
+    function initialize() {
+        initializeLoadingSequence();
+        initializeMobileMenu();
+        initializeScrollReveal();
+    }
+
+    initialize();
 });
