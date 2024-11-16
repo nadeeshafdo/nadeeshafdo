@@ -372,6 +372,12 @@ footer {
     padding: 20px;
 }
 
+.project-created-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+}
+
 /* Loading screen styles */
 #loading-screen {
     position: fixed;
@@ -386,7 +392,7 @@ footer {
     justify-content: center;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 2s ease-out;
+    transition: opacity 0.5s ease-out;
     background: linear-gradient(90deg, rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5), rgba(255, 0, 0, 0.5));
     background-size: 200% 100%;
     animation: policeLights 0.5s linear infinite;
@@ -426,4 +432,35 @@ footer {
     0%, 50% { opacity: 1; }
     50%, 100% { opacity: 0; }
     50% { opacity: 1; }
+}
+
+/* Sort container */
+.sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.sort-label {
+    font-size: 1rem;
+    margin-right: 10px;
+    color: #444;
+}
+
+.sort-dropdown {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.sort-dropdown:focus {
+    outline: none;
+    border-color: var(--primary, #007acc);
 }

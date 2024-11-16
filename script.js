@@ -4,15 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loading-screen');
     const typewriterElement = document.getElementById('typewriter');
     const statValues = document.querySelectorAll('.stat-value');
+    const sortDropdown = document.getElementById('sort-options');
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    
+
     const CONFIG = {
         githubUsername: 'nadeeshafdo',
         typewriterSpeed: 75,
         loadingDuration: 8000,
         adviceDisplayDuration: 4000
     };
+
+    let projectsData = []; // Cache GitHub projects for sorting
 
     // Typewriter effect implementation
     class Typewriter {
@@ -21,31 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
             this.text = text;
             this.speed = speed;
             this.currentChar = 0;
-            this.isDeleting = false;
         }
 
         type() {
-            // Current text based on deletion or typing
-            const fullText = this.text;
-            const currentText = fullText.substring(0, this.currentChar);
-
-            // Update the element text
-            this.element.textContent = currentText;
-
-            // Add blinking cursor
-            if (!this.isDeleting && this.currentChar === fullText.length) {
-                return;
-            }
-
-            // Speed for typing and deleting
-            let typeSpeed = this.speed;
-
-            if (!this.isDeleting) {
+            if (this.currentChar < this.text.length) {
+                this.element.textContent += this.text.charAt(this.currentChar);
                 this.currentChar++;
+                setTimeout(() => this.type(), this.speed);
             }
-
-            // Continue typing
-            setTimeout(() => this.type(), typeSpeed);
         }
 
         start() {
@@ -56,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate number counter
     function animateCounter(element, target) {
         let current = 0;
-        const increment = target / 50; // Divide animation into 50 steps
-        const duration = 2000; // 2 seconds
+        const increment = target / 50;
+        const duration = 2000;
         const stepTime = duration / 50;
 
         const counter = setInterval(() => {
@@ -79,74 +65,96 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Create project card
-    function createProjectCard(repo) {
-        const card = document.createElement('article');
-        card.className = 'project-card';
+// Create project card
+function createProjectCard(repo) {
+    const card = document.createElement('article');
+    card.className = 'project-card';
 
-        const technologies = repo.topics || [];
-        const languageClass = repo.language ? repo.language.toLowerCase() : '';
+    const technologies = repo.topics || [];
+    const languageClass = repo.language ? repo.language.toLowerCase() : '';
 
-        card.innerHTML = `
-            <div class="project-header">
-                <i class="fas fa-folder-open project-icon"></i>
-                <div class="project-links">
-                    ${repo.homepage ? `
-                        <a href="${repo.homepage}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Live demo">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    ` : ''}
-                    <a href="${repo.html_url}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View source">
-                        <i class="fab fa-github"></i>
+    // Format the created date
+    const createdDate = new Date(repo.created_at).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
+    card.innerHTML = `
+        <div class="project-header">
+            <i class="fas fa-folder-open project-icon"></i>
+            <div class="project-links">
+                ${repo.homepage ? `
+                    <a href="${repo.homepage}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+                        <i class="fas fa-external-link-alt"></i>
                     </a>
-                </div>
+                ` : ''}
+                <a href="${repo.html_url}" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View source">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
-            <h3 class="project-title">${repo.name}</h3>
-            <p class="project-description">${repo.description || 'No description available'}</p>
-            <div class="project-tech">
-                ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+        </div>
+        <h3 class="project-title">${repo.name}</h3>
+        <p class="project-description">${repo.description || 'No description available'}</p>
+        <div class="project-tech">
+            ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+        </div>
+        ${repo.language ? `
+            <div class="project-language">
+                <span class="language-dot ${languageClass}"></span>
+                <span>${repo.language}</span>
             </div>
-            ${repo.language ? `
-                <div class="project-language">
-                    <span class="language-dot ${languageClass}"></span>
-                    <span>${repo.language}</span>
-                </div>
-            ` : ''}
-        `;
+        ` : ''}
+        <p class="project-created-date">Created on: ${createdDate}</p>
+    `;
 
-        return card;
+    return card;
+}
+
+    // Display projects
+    function displayProjects(projects) {
+        projectsSection.innerHTML = '';
+
+        if (projects.length === 0) {
+            projectsSection.innerHTML = '<p class="no-projects">No projects found.</p>';
+            return;
+        }
+
+        projects.forEach(repo => {
+            const projectCard = createProjectCard(repo);
+            projectsSection.appendChild(projectCard);
+        });
+    }
+
+    // Sort projects based on dropdown selection
+    function sortProjects(sortBy) {
+        let sortedProjects = [...projectsData];
+        if (sortBy === 'stars') {
+            sortedProjects.sort((a, b) => b.stargazers_count - a.stargazers_count);
+        } else if (sortBy === 'name') {
+            sortedProjects.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortBy === 'updated') {
+            sortedProjects.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        } else {
+            sortedProjects.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        }
+        displayProjects(sortedProjects);
     }
 
     // Fetch and display GitHub projects
     async function fetchProjects() {
         try {
             const response = await fetch(
-                `https://api.github.com/users/${CONFIG.githubUsername}/repos?sort=created&per_page=6`,
-                {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Accept-Encoding': 'gzip, deflate'
-                    }
-                }
+                `https://api.github.com/users/${CONFIG.githubUsername}/repos?per_page=100`,
+                { headers: { 'Accept': 'application/vnd.github.v3+json' } }
             );
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const repos = await response.json();
-            
-            if (repos.length === 0) {
-                projectsSection.innerHTML = '<p class="no-projects">No projects found.</p>';
-                return;
-            }
-
-            // Clear and populate projects
-            projectsSection.innerHTML = '';
-            repos.forEach(repo => {
-                const projectCard = createProjectCard(repo);
-                projectsSection.appendChild(projectCard);
-            });
+            projectsData = await response.json();
+            sortProjects('created'); // Default sort by creation date
         } catch (error) {
             console.error('Error fetching GitHub repos:', error);
             projectsSection.innerHTML = `
@@ -161,28 +169,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize loading sequence
     async function initializeLoadingSequence() {
         try {
-            // Fetch advice while loading
             const adviceResponse = await fetch('https://api.adviceslip.com/advice');
             const adviceData = await adviceResponse.json();
             const advice = adviceData.slip.advice;
 
-            // Start typewriter effect
             const typewriter = new Typewriter(typewriterElement, advice, CONFIG.typewriterSpeed);
             typewriter.start();
 
-            // Initialize projects fetch
             await fetchProjects();
 
-            // Hide loading screen after everything is loaded
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
                 initializeCounters();
             }, CONFIG.loadingDuration + CONFIG.adviceDisplayDuration);
-
         } catch (error) {
             console.error('Error during loading sequence:', error);
             typewriterElement.textContent = 'Loading your experience...';
-            
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
                 initializeCounters();
@@ -190,47 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Mobile menu toggle
-    function initializeMobileMenu() {
-        mobileMenuBtn?.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        navLinks?.addEventListener('click', (e) => {
-            if (e.target.classList.contains('nav-link')) {
-                mobileMenuBtn.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
-    }
-
-    // Scroll reveal animation
-    function initializeScrollReveal() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.project-card, .about-content, .contact-content')
-            .forEach(element => observer.observe(element));
-    }
+    // Initialize sort dropdown
+    sortDropdown?.addEventListener('change', (e) => {
+        sortProjects(e.target.value);
+    });
 
     // Initialize everything
-    function initialize() {
+    async function initialize() {
         initializeLoadingSequence();
-        initializeMobileMenu();
-        initializeScrollReveal();
+        initializeCounters();
     }
 
     initialize();
