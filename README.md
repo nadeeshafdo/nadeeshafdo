@@ -25,6 +25,10 @@ I'm an undergraduate student from Sri Lanka, passionate about technology and sof
 ![SASS](https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Visual Basic](https://img.shields.io/badge/Visual%20Basic-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white)
+![React.JS](https://img.shields.io/badge/React.JS-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![Node.JS](https://img.shields.io/badge/Node.JS-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Next.JS](https://img.shields.io/badge/Next.JS-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
 ## 🏆 GitHub Trophies
 <p align="center">
