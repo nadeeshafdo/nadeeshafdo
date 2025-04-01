@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import UnderConstruction from './pages/UnderConstruction'
+import './pages/construction.css'
 
-function App() {
+function HomePage() {
   const [count, setCount] = useState(0)
 
   return (
@@ -28,7 +31,21 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <p>
+        <Link to="/">Go to Construction Page</Link>
+      </p>
     </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<UnderConstruction />} />
+        <Route path="/app" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
