@@ -2,7 +2,7 @@
 
 ## 🌟 About Me
 <p align="justify">
-I'm an undergraduate student from Sri Lanka, passionate about technology and software development. My coding journey spans multiple programming languages and technologies, with a keen interest in creating innovative solutions.
+I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about technology and software development. My coding journey spans multiple programming languages and technologies, with a keen interest in creating innovative solutions.
 </p>
 
 ## 🔗 Let's Connect!
