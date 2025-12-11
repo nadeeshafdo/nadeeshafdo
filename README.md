@@ -48,7 +48,7 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
 <p align="center">
   <img src='https://github-readme-stats.vercel.app/api/top-langs?username=nadeeshafdo&show_icons=true&locale=en&layout=compact&theme=onedark' alt='Top Languages' height='165'>
   <img src='https://github-readme-stats.vercel.app/api?username=nadeeshafdo&show_icons=true&locale=en&theme=onedark' alt='GitHub Stats' height='165'>
-  <img src='https://github-readme-streak-stats.herokuapp.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
+  <img src='https://streak-stats.demolab.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
 </p>
 
 ## 📈 Contribution Graph
