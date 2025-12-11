@@ -41,14 +41,14 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
 
 ## 🏆 GitHub Trophies
 <p align="center">
-  <img src='https://github-profile-trophy.vercel.app/?username=nadeeshafdo&theme=onedark&column=7&margin-w=15&margin-h=15' alt='GitHub Trophies'>
+  <img src='https://github-trophies.vercel.app/?username=nadeeshafdo&theme=onedark&column=7&margin-w=15&margin-h=15' alt='GitHub Trophies'>
 </p>
 
 ## 📊 My GitHub Stats ![Profile views](https://komarev.com/ghpvc/?username=nadeeshafdo&label=Profile%20views&color=0e75b6&style=flat)
 <p align="center">
-  <img src='https://github-readme-stats.vercel.app/api/top-langs?username=nadeeshafdo&show_icons=true&locale=en&layout=compact&theme=onedark' alt='Top Languages' height='165'>
-  <img src='https://github-readme-stats.vercel.app/api?username=nadeeshafdo&show_icons=true&locale=en&theme=onedark' alt='GitHub Stats' height='165'>
-  <img src='https://streak-stats.demolab.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
+  <img src='https://github-readme-stats-sigma-five.vercel.app/api/top-langs?username=nadeeshafdo&show_icons=true&locale=en&layout=compact&theme=onedark' alt='Top Languages' height='165'>
+  <img src='https://github-readme-stats-sigma-five.vercel.app/api?username=nadeeshafdo&show_icons=true&locale=en&theme=onedark' alt='GitHub Stats' height='165'>
+  <img src='https://github-readme-streak-stats.herokuapp.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
 </p>
 
 ## 📈 Contribution Graph
