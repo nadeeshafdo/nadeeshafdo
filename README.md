@@ -48,6 +48,7 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
   <img src="https://img.shields.io/badge/Visual%20Basic-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Basic">
   <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="SQL">
+  <img src="https://img.shields.io/badge/GNU%20Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Bash">
 </p>
 
 ### Frameworks & Libraries
@@ -63,6 +64,9 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
 ### Tools & Platforms
 <p align="center">
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+  <img src="https://img.shields.io/badge/GCC-323330?style=for-the-badge&logo=gnu&logoColor=white" alt="GCC">
+  <img src="https://img.shields.io/badge/GNU%20Make-A42E2B?style=for-the-badge&logo=gnu&logoColor=white" alt="Make">
+  <img src="https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white" alt="CMake">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman">
   <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code">
@@ -76,6 +80,11 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
   <img src="https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white" alt="Debian">
   <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu">
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
+</p>
+
+## 🏆 GitHub Trophies
+<p align="center">
+  <img src='https://github-trophies.vercel.app/?username=nadeeshafdo&theme=onedark&column=7&margin-w=15&margin-h=15' alt='GitHub Trophies'>
 </p>
 
 ## 📊 My GitHub Stats ![Profile views](https://komarev.com/ghpvc/?username=nadeeshafdo&label=Profile%20views&color=0e75b6&style=flat)
