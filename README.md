@@ -24,6 +24,8 @@
 I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about technology and software development. My coding journey spans multiple programming languages and technologies, with a keen interest in creating innovative solutions.
 </p>
 
+> **I prefer building from source over Snaps and I prefer minimalism over bloat.**
+
 ## 🔗 Let's Connect!
 <p align="center">
   <a href="https://www.linkedin.com/in/nadeesha-fernando-7980141bb" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
