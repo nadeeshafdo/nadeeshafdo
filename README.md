@@ -1,5 +1,12 @@
 # Hello there 👋, I'm Nadeesha Fernando! 😏🚀
 
+## 🌟 About Me
+<p align="justify">
+I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about technology and software development. My coding journey spans multiple programming languages and technologies, with a keen interest in creating innovative solutions. I prefer building from source over Snaps and I prefer minimalism over bloat.
+</p>
+
+<br>
+
 <div align="center">
 
   <a href="https://www.youtube.com/watch?v=5TTcbMv5tDc&t=743s" target="_blank">
@@ -18,13 +25,6 @@
 </div>
 
 <br>
-
-## 🌟 About Me
-<p align="justify">
-I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about technology and software development. My coding journey spans multiple programming languages and technologies, with a keen interest in creating innovative solutions.
-</p>
-
-> **I prefer building from source over Snaps and I prefer minimalism over bloat.**
 
 ## 🔗 Let's Connect!
 <p align="center">
@@ -78,19 +78,8 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
 </p>
 
-## 🏆 GitHub Trophies
-<p align="center">
-  <img src='https://github-trophies.vercel.app/?username=nadeeshafdo&theme=onedark&column=7&margin-w=15&margin-h=15' alt='GitHub Trophies'>
-</p>
-
 ## 📊 My GitHub Stats ![Profile views](https://komarev.com/ghpvc/?username=nadeeshafdo&label=Profile%20views&color=0e75b6&style=flat)
 <p align="center">
   <img src='https://github-readme-stats-sigma-five.vercel.app/api/top-langs?username=nadeeshafdo&show_icons=true&locale=en&layout=compact&theme=onedark' alt='Top Languages' height='165'>
-  <img src='https://github-readme-stats-sigma-five.vercel.app/api?username=nadeeshafdo&show_icons=true&locale=en&theme=onedark' alt='GitHub Stats' height='165'>
   <img src='https://github-readme-streak-stats.herokuapp.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
-</p>
-
-## 📈 Contribution Graph
-<p align="center">
-  <img src='https://github-readme-activity-graph.vercel.app/graph?username=nadeeshafdo&bg_color=1a1b27&color=37bcf6&line=0e75b6&point=ffffff&area=true&hide_border=true' alt='Contribution Graph'>
 </p>
