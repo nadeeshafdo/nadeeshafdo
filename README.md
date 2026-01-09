@@ -45,6 +45,8 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=black" alt="TypeScript">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java">
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C">
+  <img src="https://img.shields.io/badge/Assembly-545454?style=for-the-badge&logo=hack-the-box&logoColor=white" alt="Assembly">
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
   <img src="https://img.shields.io/badge/Visual%20Basic-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Basic">
   <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="SQL">
@@ -82,13 +84,8 @@ I'm a software engineering intern at Sri Lanka Telecom PLC., passionate about te
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
 </p>
 
-## 🏆 GitHub Trophies
-<p align="center">
-  <img src='https://github-trophies.vercel.app/?username=nadeeshafdo&theme=onedark&column=7&margin-w=15&margin-h=15' alt='GitHub Trophies'>
-</p>
-
-## 📊 My GitHub Stats ![Profile views](https://komarev.com/ghpvc/?username=nadeeshafdo&label=Profile%20views&color=0e75b6&style=flat)
 <p align="center">
   <img src='https://github-readme-stats-sigma-five.vercel.app/api/top-langs?username=nadeeshafdo&show_icons=true&locale=en&layout=compact&theme=onedark' alt='Top Languages' height='165'>
+  <img src='https://github-readme-stats-sigma-five.vercel.app/api?username=nadeeshafdo&show_icons=true&locale=en&theme=onedark' alt='GitHub Stats' height='165'>
   <img src='https://github-readme-streak-stats.herokuapp.com/?user=nadeeshafdo&theme=onedark' alt='GitHub Streak' height='165'>
 </p>
